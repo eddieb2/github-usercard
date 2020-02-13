@@ -1,38 +1,3 @@
-// const data = {
-//   "login": "eddieb2",
-//   "id": 58380182,
-//   "node_id": "MDQ6VXNlcjU4MzgwMTgy",
-//   "avatar_url": "https://avatars3.githubusercontent.com/u/58380182?v=4",
-//   "gravatar_id": "",
-//   "url": "https://api.github.com/users/eddieb2",
-//   "html_url": "https://github.com/eddieb2",
-//   "followers_url": "https://api.github.com/users/eddieb2/followers",
-//   "following_url": "https://api.github.com/users/eddieb2/following{/other_user}",
-//   "gists_url": "https://api.github.com/users/eddieb2/gists{/gist_id}",
-//   "starred_url": "https://api.github.com/users/eddieb2/starred{/owner}{/repo}",
-//   "subscriptions_url": "https://api.github.com/users/eddieb2/subscriptions",
-//   "organizations_url": "https://api.github.com/users/eddieb2/orgs",
-//   "repos_url": "https://api.github.com/users/eddieb2/repos",
-//   "events_url": "https://api.github.com/users/eddieb2/events{/privacy}",
-//   "received_events_url": "https://api.github.com/users/eddieb2/received_events",
-//   "type": "User",
-//   "site_admin": false,
-//   "name": "Edward Andrew Blanciak",
-//   "company": null,
-//   "blog": "",
-//   "location": "Pittsburgh, PA",
-//   "email": null,
-//   "hireable": null,
-//   "bio": null,
-//   "public_repos": 22,
-//   "public_gists": 0,
-//   "followers": 9,
-//   "following": 10,
-//   "created_at": "2019-12-01T03:51:47Z",
-//   "updated_at": "2020-02-13T20:12:58Z"
-// }
-
-
 /* Step 1: using axios, send a GET request to the following URL 
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
@@ -148,8 +113,75 @@ axios.get('https://api.github.com/users/eddieb2')
   console.log('the data was not returned', error)
 })
 
+axios.get('https://api.github.com/users/tetondan')
+.then(response => {
+  console.log(response.data)
+  let myArray = [];
+  myArray.push(response.data);
+  console.log(myArray);
+ myArray.forEach((item) => {
+    cards.appendChild(cardMaker(item));
+  });
+})
+.catch(error => {
+  console.log('the data was not returned', error)
+})
 
+axios.get('https://api.github.com/users/dustinmyers')
+.then(response => {
+  console.log(response.data)
+  let myArray = [];
+  myArray.push(response.data);
+  console.log(myArray);
+ myArray.forEach((item) => {
+    cards.appendChild(cardMaker(item));
+  });
+})
+.catch(error => {
+  console.log('the data was not returned', error)
+})
 
+axios.get('https://api.github.com/users/justsml')
+.then(response => {
+  console.log(response.data)
+  let myArray = [];
+  myArray.push(response.data);
+  console.log(myArray);
+ myArray.forEach((item) => {
+    cards.appendChild(cardMaker(item));
+  });
+})
+.catch(error => {
+  console.log('the data was not returned', error)
+})
+
+axios.get('https://api.github.com/users/luishrd')
+.then(response => {
+  console.log(response.data)
+  let myArray = [];
+  myArray.push(response.data);
+  console.log(myArray);
+ myArray.forEach((item) => {
+    cards.appendChild(cardMaker(item));
+  });
+})
+.catch(error => {
+  console.log('the data was not returned', error)
+})
+
+axios.get('https://api.github.com/users/bigknell')
+.then(response => {
+  console.log(response.data)
+  let myArray = [];
+  myArray.push(response.data);
+  console.log(myArray);
+ myArray.forEach((item) => {
+    cards.appendChild(cardMaker(item));
+  });
+})
+.catch(error => {
+  console.log('the data was not returned', error)
+})
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
