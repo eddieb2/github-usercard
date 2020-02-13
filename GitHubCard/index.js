@@ -83,10 +83,8 @@ const cardMaker = (val) => {
   name.textContent = val.name;
   userName.textContent = val.login;
   location.textContent = `Location: ${val.location}`;
-  // Below line is needed but keeps hiding my A tag.
-  profile.textContent = 'Profile: ';
-  url.href = val.html_url;
   url.textContent = val.html_url;
+  profile.innerHTML = `Profile: <a href='${val.html_url}'>${val.html_url}</a>`;
   followers.textContent = `Followers: ${val.followers}`;
   following.textContent = `Following: ${val.following}`;
   bio.textContent = `Bio: ${val.bio}`;
@@ -123,9 +121,7 @@ axios.get('https://api.github.com/users/tetondan')
     cards.appendChild(cardMaker(item));
   });
 })
-.catch(error => {
-  console.log('the data was not returned', error)
-})
+
 
 axios.get('https://api.github.com/users/dustinmyers')
 .then(response => {
@@ -136,9 +132,6 @@ axios.get('https://api.github.com/users/dustinmyers')
  myArray.forEach((item) => {
     cards.appendChild(cardMaker(item));
   });
-})
-.catch(error => {
-  console.log('the data was not returned', error)
 })
 
 axios.get('https://api.github.com/users/justsml')
@@ -151,9 +144,6 @@ axios.get('https://api.github.com/users/justsml')
     cards.appendChild(cardMaker(item));
   });
 })
-.catch(error => {
-  console.log('the data was not returned', error)
-})
 
 axios.get('https://api.github.com/users/luishrd')
 .then(response => {
@@ -164,9 +154,6 @@ axios.get('https://api.github.com/users/luishrd')
  myArray.forEach((item) => {
     cards.appendChild(cardMaker(item));
   });
-})
-.catch(error => {
-  console.log('the data was not returned', error)
 })
 
 axios.get('https://api.github.com/users/bigknell')
@@ -179,9 +166,8 @@ axios.get('https://api.github.com/users/bigknell')
     cards.appendChild(cardMaker(item));
   });
 })
-.catch(error => {
-  console.log('the data was not returned', error)
-})
+
+
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
