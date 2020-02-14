@@ -24,32 +24,172 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
 
-<div class="card">
-  <img src={image url of user} />
+<div class="card"> x
+  <img src={image url of user} /> x
   <div class="card-info">
-    <h3 class="name">{users name}</h3>
-    <p class="username">{users user name}</p>
-    <p>Location: {users location}</p>
-    <p>Profile:  
-      <a href={address to users github page}>{address to users github page}</a>
+    <h3 class="name">{users name}</h3> x
+    <p class="username">{users user name}</p> x
+    <p>Location: {users location}</p>x
+    <p>Profile:  x
+      <a href={address to users github page}>{address to users github page}</a>x
     </p>
-    <p>Followers: {users followers count}</p>
-    <p>Following: {users following count}</p>
-    <p>Bio: {users bio}</p>
+    <p>Followers: {users followers count}</p>x
+    <p>Following: {users following count}</p>x
+    <p>Bio: {users bio}</p>x
   </div>
 </div>
 
 */
 
-/* List of LS Instructors Github username's: 
-  tetondan
-  dustinmyers
-  justsml
-  luishrd
-  bigknell
-*/
+
+const cardMaker = (val) => {
+  const card = document.createElement('div');
+  const userImage = document.createElement('img');
+
+  const cardInfo = document.createElement('div');
+  // All below are nested inside of cardInfo
+  const name = document.createElement('h3');
+  const userName = document.createElement('p');
+  const location = document.createElement('p');
+  const profile = document.createElement('p');
+  // URL is nested inside of Profile 
+  const url = document.createElement('a');
+  const followers = document.createElement('p');
+  const following = document.createElement('p');
+  const bio = document.createElement('p');
+
+  card.classList.add('card');
+  cardInfo.classList.add('card-info');
+  name.classList.add('name');
+  userName.classList.add('username');
+
+  card.appendChild(userImage);
+  card.appendChild(cardInfo);
+  cardInfo.appendChild(name);
+  cardInfo.appendChild(userName);
+  cardInfo.appendChild(location);
+  cardInfo.appendChild(profile);
+  profile.appendChild(url);
+  cardInfo.appendChild(followers);
+  cardInfo.appendChild(following);
+  cardInfo.appendChild(bio);
+
+  userImage.src = val.avatar_url;
+  name.textContent = val.name;
+  userName.textContent = val.login;
+  location.textContent = `Location: ${val.location}`;
+  url.textContent = val.html_url;
+  profile.innerHTML = `Profile: <a href='${val.html_url}'>${val.html_url}</a>`;
+  followers.textContent = `Followers: ${val.followers}`;
+  following.textContent = `Following: ${val.following}`;
+  bio.textContent = `Bio: ${val.bio}`;
+
+
+  // console.log('Structure: ', card);
+  console.log('logged info', cardInfo)
+  return card;
+}
+
+const cards = document.querySelector('.cards');
+
+axios.get('https://api.github.com/users/eddieb2')
+.then(response => {
+  console.log(response.data)
+  let myArray = [];
+  myArray.push(response.data);
+  console.log(myArray);
+ myArray.forEach((item) => {
+    cards.appendChild(cardMaker(item));
+  });
+})
+.catch(error => {
+  console.log('the data was not returned', error)
+})
+
+axios.get('https://api.github.com/users/tetondan')
+.then(response => {
+  console.log(response.data)
+  let myArray = [];
+  myArray.push(response.data);
+  console.log(myArray);
+ myArray.forEach((item) => {
+    cards.appendChild(cardMaker(item));
+  });
+})
+
+
+axios.get('https://api.github.com/users/dustinmyers')
+.then(response => {
+  console.log(response.data)
+  let myArray = [];
+  myArray.push(response.data);
+  console.log(myArray);
+ myArray.forEach((item) => {
+    cards.appendChild(cardMaker(item));
+  });
+})
+
+axios.get('https://api.github.com/users/justsml')
+.then(response => {
+  console.log(response.data)
+  let myArray = [];
+  myArray.push(response.data);
+  console.log(myArray);
+ myArray.forEach((item) => {
+    cards.appendChild(cardMaker(item));
+  });
+})
+
+axios.get('https://api.github.com/users/luishrd')
+.then(response => {
+  console.log(response.data)
+  let myArray = [];
+  myArray.push(response.data);
+  console.log(myArray);
+ myArray.forEach((item) => {
+    cards.appendChild(cardMaker(item));
+  });
+})
+
+axios.get('https://api.github.com/users/bigknell')
+.then(response => {
+  console.log(response.data)
+  let myArray = [];
+  myArray.push(response.data);
+  console.log(myArray);
+ myArray.forEach((item) => {
+    cards.appendChild(cardMaker(item));
+  });
+})
+
+
+
+// Stretch
+// Get the followers data from github api
+// Populate new array 
+// Create new cards for each of the followers
+
+const followersArray = [];
+const followersURL = [];
+
+axios.get('https://api.github.com/users/eddieb2/followers')
+.then(response => {
+  // console.log(response.data)
+  response.data.forEach(item => {
+    followersURL.push(item.url);
+    axios.get(item.url)
+    .then(response => {
+      console.log(response.data)
+      cards.appendChild(cardMaker(response.data))
+    })
+  });
+})
+
+
+console.log('urls arr: ', followersURL)
+// console.log('arr: ', followersArray);
+// console.log('arr index 0: ', followersArray[0])
