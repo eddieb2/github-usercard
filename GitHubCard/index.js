@@ -24,7 +24,6 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -168,10 +167,29 @@ axios.get('https://api.github.com/users/bigknell')
 })
 
 
-/* List of LS Instructors Github username's: 
-  tetondan
-  dustinmyers
-  justsml
-  luishrd
-  bigknell
-*/
+
+// Stretch
+// Get the followers data from github api
+// Populate new array 
+// Create new cards for each of the followers
+
+const followersArray = [];
+const followersURL = [];
+
+axios.get('https://api.github.com/users/eddieb2/followers')
+.then(response => {
+  // console.log(response.data)
+  response.data.forEach(item => {
+    followersURL.push(item.url);
+    axios.get(item.url)
+    .then(response => {
+      console.log(response.data)
+      cards.appendChild(cardMaker(response.data))
+    })
+  });
+})
+
+
+console.log('urls arr: ', followersURL)
+// console.log('arr: ', followersArray);
+// console.log('arr index 0: ', followersArray[0])
